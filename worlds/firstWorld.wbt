@@ -1,0 +1,1014 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/RoadIntersection.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/StraightRoadSegment.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Pavement.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/bmw/BmwX5.proto"
+
+WorldInfo {
+  window "<generic>"
+  ERP 0.6
+  basicTimeStep 10
+}
+Viewpoint {
+  orientation 0.20510347566147583 -0.8134620366610216 -0.5442536900957909 5.415502625230445
+  position -43.077847505944675 -22.066163151407704 86.56253756224108
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 4.74 0 -0.01
+  floorSize 1000 1000
+}
+DEF Road_0 StraightRoadSegment {
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_1 StraightRoadSegment {
+  translation 23.5 -23.5 0
+  rotation 0 0 1 1.5708
+  name "road(3)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_2 StraightRoadSegment {
+  translation 23.5 55.5 0
+  rotation 0 0 1 1.5708
+  name "road(10)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_3 StraightRoadSegment {
+  translation 55.5 55.5 0
+  rotation 0 0 1 1.5708
+  name "road(11)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_4 StraightRoadSegment {
+  translation 55.5 -23.5 0
+  rotation 0 0 1 1.5708
+  name "road(9)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_5 StraightRoadSegment {
+  translation 23.5 8.5 0
+  rotation 0 0 1 1.5708
+  name "road(4)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_6 StraightRoadSegment {
+  translation 55.5 8.5 0
+  rotation 0 0 1 1.5708
+  name "road(7)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_7 StraightRoadSegment {
+  translation 55.5 23.5 0
+  rotation 0 0 1 1.5708
+  name "road(8)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+  roadBoundingObject TRUE
+}
+DEF Road_8 StraightRoadSegment {
+  translation 23.5 23.5 0
+  rotation 0 0 1 1.5708
+  name "road(5)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_9 StraightRoadSegment {
+  translation 32 0 0
+  name "road(1)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_10 StraightRoadSegment {
+  translation 32 47 0
+  name "road(6)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_11 StraightRoadSegment {
+  translation 64 0 0
+  name "road(2)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_12 StraightRoadSegment {
+  translation 64 47 0
+  name "road(13)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+}
+DEF Road_13 StraightRoadSegment {
+  translation 0 47 0
+  name "road(12)"
+  numberOfLanes 1
+  length 15
+  pavementAppearance Pavement {
+    colorOverride 0.666667 0 0.498039
+  }
+  locked FALSE
+  roadBoundingObject TRUE
+}
+DEF Road_14 Solid {
+  translation 23.5 0 0
+  children [
+    Solid {
+      translation -3.89768 -6.01198 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    Solid {
+      translation -6 -3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    Solid {
+      translation 3.88229 -6.00815 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation 6 -3.91 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -6.02 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation -3.89815 5.99803 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation 3.89186 6.00185 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+    Solid {
+      translation 6 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+    }
+    RoadIntersection {
+      rotation 0 0 1 -0.7854
+      startRoadsNumberOfLanes 1
+      startRoadBorder FALSE
+      startRoadBorderboundingObject TRUE
+      boundingObject TRUE
+    }
+  ]
+  name "CustomRoadIntersection"
+}
+DEF Road_15 Solid {
+  translation 55.5 0 0
+  children [
+    Solid {
+      translation -3.89768 -6.01198 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    Solid {
+      translation -6 -3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    Solid {
+      translation 3.88229 -6.00815 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation 6 -3.91 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -6.02 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation -3.89815 5.99803 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation 3.89186 6.00185 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+    Solid {
+      translation 6 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+    }
+    RoadIntersection {
+      rotation 0 0 1 -0.7854
+      startRoadsNumberOfLanes 1
+      startRoadBorder FALSE
+      startRoadBorderboundingObject TRUE
+      boundingObject TRUE
+    }
+  ]
+  name "CustomRoadIntersection(1)"
+}
+DEF Road_16 Solid {
+  translation 23.5 47 0
+  children [
+    Solid {
+      translation -3.89768 -6.01198 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    Solid {
+      translation -6 -3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    Solid {
+      translation 3.88229 -6.00815 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation 6 -3.91 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -6.02 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation -3.89815 5.99803 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation 3.89186 6.00185 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+    Solid {
+      translation 6 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+    }
+    RoadIntersection {
+      rotation 0 0 1 -0.7854
+      startRoadsNumberOfLanes 1
+      startRoadBorder FALSE
+      startRoadBorderboundingObject TRUE
+      boundingObject TRUE
+    }
+  ]
+  name "CustomRoadIntersection(2)"
+}
+DEF Road_17 Solid {
+  translation 55.5 47 0
+  children [
+    Solid {
+      translation -3.89768 -6.01198 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    Solid {
+      translation -6 -3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    Solid {
+      translation 3.88229 -6.00815 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation 6 -3.91 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -6.02 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation -3.89815 5.99803 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation 3.89186 6.00185 0
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+    Solid {
+      translation 6 3.9 0
+      children [
+        Shape {
+          appearance Pavement {
+            colorOverride 0.666667 0 0.498039
+          }
+          geometry Box {
+            size 5 0.8 0.3
+          }
+        }
+      ]
+    }
+    RoadIntersection {
+      rotation 0 0 1 -0.7854
+      startRoadsNumberOfLanes 1
+      startRoadBorder FALSE
+      startRoadBorderboundingObject TRUE
+      boundingObject TRUE
+    }
+  ]
+  name "CustomRoadIntersection(3)"
+}
+DEF greenStart Solid {
+  translation 55.5 -23.5 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.101961 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 1 1 10
+      }
+    }
+  ]
+  name "greenStart"
+}
+DEF redEnd Robot {
+  translation 55.5 47 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 1 1 10
+      }
+    }
+  ]
+  name "redEnd"
+  boundingObject Box {
+    size 1 1 10
+  }
+  controller "randomizeObject"
+  supervisor TRUE
+}
+DEF Boundary_1 Solid {
+  translation 9.9 -3.92 0
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+}
+DEF Boundary_6 Solid {
+  translation 9.9 3.87 0
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(5)"
+}
+DEF Boundary_21 Solid {
+  translation 39.46 3.87 0
+  children [
+    Shape {
+      geometry Box {
+        size 25 0.75 2
+      }
+    }
+  ]
+  name "solid(20)"
+}
+DEF Boundary_22 Solid {
+  translation 39.46 43.1 0
+  children [
+    Shape {
+      geometry Box {
+        size 25 0.75 2
+      }
+    }
+  ]
+  name "solid(22)"
+}
+DEF Boundary_23 Solid {
+  translation 39.46 50.91 0
+  children [
+    Shape {
+      geometry Box {
+        size 25 0.75 2
+      }
+    }
+  ]
+  name "solid(23)"
+}
+DEF Boundary_24 Solid {
+  translation 39.46 -3.88 0
+  children [
+    Shape {
+      geometry Box {
+        size 25 0.75 2
+      }
+    }
+  ]
+  name "solid(21)"
+}
+DEF Boundary_7 Solid {
+  translation 9.9 43.09 0
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(6)"
+}
+DEF Boundary_8 Solid {
+  translation 9.9 50.92 0
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(7)"
+}
+DEF Boundary_2 Solid {
+  translation 19.59 -13.64 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(1)"
+}
+DEF Boundary_9 Solid {
+  translation 19.59 60.55 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(8)"
+}
+DEF Boundary_10 Solid {
+  translation 27.36 60.55 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(9)"
+}
+DEF Boundary_11 Solid {
+  translation 51.61 60.55 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(10)"
+}
+DEF Boundary_12 Solid {
+  translation 59.41 60.55 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(11)"
+}
+DEF Boundary_13 Solid {
+  translation 69.01 50.92 0
+  rotation 0 0 1 -3.1415853071795863
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(12)"
+}
+DEF Boundary_14 Solid {
+  translation 69.01 43.1 0
+  rotation 0 0 1 -3.1415853071795863
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(13)"
+}
+DEF Boundary_15 Solid {
+  translation 69.01 3.9 0
+  rotation 0 0 1 -3.1415853071795863
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(14)"
+}
+DEF Boundary_16 Solid {
+  translation 59.37 23.5 0
+  rotation 0 0 -1 1.57079
+  children [
+    Shape {
+      geometry Box {
+        size 40 0.75 2
+      }
+    }
+  ]
+  name "solid(16)"
+}
+DEF Boundary_17 Solid {
+  translation 51.58 23.5 0
+  rotation 0 0 -1 1.57079
+  children [
+    Shape {
+      geometry Box {
+        size 40 0.75 2
+      }
+    }
+  ]
+  name "solid(17)"
+}
+DEF Boundary_18 Solid {
+  translation 27.32 23.5 0
+  rotation 0 0 -1 1.57079
+  children [
+    Shape {
+      geometry Box {
+        size 40 0.75 2
+      }
+    }
+  ]
+  name "solid(18)"
+}
+DEF Boundary_19 Solid {
+  translation 19.56 23.5 0
+  rotation 0 0 -1 1.57079
+  children [
+    Shape {
+      geometry Box {
+        size 40 0.75 2
+      }
+    }
+  ]
+  name "solid(19)"
+}
+DEF Boundary_20 Solid {
+  translation 69.01 -3.92 0
+  rotation 0 0 1 -3.1415853071795863
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(15)"
+}
+DEF Boundary_3 Solid {
+  translation 27.38 -13.64 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(2)"
+}
+DEF Boundary_4 Solid {
+  translation 51.62 -13.64 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(3)"
+}
+DEF Boundary_5 Solid {
+  translation 59.4 -13.64 0
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      geometry Box {
+        size 20 0.75 2
+      }
+    }
+  ]
+  name "solid(4)"
+}
+DEF car BmwX5 {
+  hidden translation_1 0 0 0
+  hidden rotation_1 1.220965960937666e-11 -1 2.9526528263957605e-11 0.784205190707649
+  hidden translation_2 0 0 0
+  hidden rotation_2 1.095476728372367e-11 1 -2.8943931502690137e-11 0.723640381542719
+  hidden translation_3 0 0 0
+  hidden translation_4 0 0 0
+  hidden rotation_4 0 -1 0 0.8929033957950832
+  translation 36.46584772257979 29.395588833135708 0.16144232691023666
+  rotation 0.007280543022526346 -0.01859436251321278 0.9998006018081927 0.7465305187922192
+  controller "AyanManualDrive"
+  supervisor TRUE
+}
