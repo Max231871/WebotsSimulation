@@ -52,6 +52,67 @@ class drive_controller(Supervisor):
         
         # Store the previous position for movement detection
         self.previous_position = self.getPos()
+        self.vertical_roads = [
+            self.getFromDef('Road_0'),  # Add additional road segments as needed
+            self.getFromDef('Road_9'),
+            self.getFromDef('Road_10'),
+            self.getFromDef('Road_11'),
+            self.getFromDef('Road_12'),
+            self.getFromDef('Road_13'),
+
+        ]
+        self.horizontal_roads = [
+            self.getFromDef('Road_1'),
+            self.getFromDef('Road_2'),
+            self.getFromDef('Road_3'),
+            self.getFromDef('Road_4'),
+            self.getFromDef('Road_5'),
+            self.getFromDef('Road_6'),
+            self.getFromDef('Road_7'),
+            self.getFromDef('Road_8'),
+
+        ]
+        self.road_intersections = [
+            self.getFromDef('Road_14'),
+            self.getFromDef('Road_15'),
+            self.getFromDef('Road_16'),
+            self.getFromDef('Road_17'),
+        ]
+        
+        # Camera
+        self.camera = self.getDevice("camera")
+        self.camera.enable(self.timestep)
+
+
+    def is_on_road(self):
+        car_position = self.getPos()  # Using self for the car's position
+        for road in self.vertical_roads:
+            center = road.getPosition()
+            length = 15
+            width = 7
+            # Check if car is within the bounding box of the road segment
+            if (center[0] <= car_position[0] <= center[0] + length and
+                center[1] - width / 2 <= car_position[1] <= center[1] + width / 2):
+                return True
+        for road in self.horizontal_roads:
+            center = road.getPosition()
+            length = 7
+            width = 15
+            # Check if car is within the bounding box of the road segment
+            if (center[0] - length / 2 <= car_position[0] <= center[0] + length / 2 and
+                center[1] <= car_position[1] <= center[1] + width):
+                return True
+                 
+        for road in self.road_intersections:
+            center = road.getPosition()
+            length = 19
+            width = 19
+            # Check if car is within the bounding box of the road segment
+            if (center[0] - length / 2 <= car_position[0] <= center[0] + length / 2 and
+                center[1] - width / 2 <= car_position[1] <= center[1] + width / 2):
+                return True
+        return False
+
     
     def getPos(self):
         """Return current position of the robot."""
@@ -84,6 +145,7 @@ class drive_controller(Supervisor):
             
             # Check if movement is below threshold
             if all(m < self.movement_threshold for m in movement):
+                self.time_stuck += self.timestep / 1000.0  # Increase the stuck timer
                 if self.time_stuck >= self.crash_delay:
                     self.if_crashed = True
                     print("Crash detected: The car is stuck or minimally moving.")
@@ -125,10 +187,10 @@ class drive_controller(Supervisor):
             
             # Drive the car
             self.drive(speed, steering)
-            
             # Detect crash
             self.detect_crash(keys)
             
+            print("Is on road: " + str(self.is_on_road()))
             # Print crash status
             if self.if_crashed:
                 print("if_crashed is True")
