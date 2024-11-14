@@ -146,7 +146,7 @@ class drive_controller(Supervisor):
             # Check if movement is below threshold
             if all(m < self.movement_threshold for m in movement):
                 self.time_stuck += self.timestep / 1000.0  # Increase the stuck timer
-                if self.time_stuck >= self.crash_delay:
+                if self.time_stuck >= self.crash_delay and self.if_crashed_previous == False:
                     self.if_crashed = True
                     print("Crash detected: The car is stuck or minimally moving.")
             else:
@@ -155,6 +155,7 @@ class drive_controller(Supervisor):
                 self.if_crashed = False
             
             # Update the previous position
+            self.if_crashed_previous = self.if_crashed #checked if crashed previously
             self.previous_position = current_position
         else:
             # Reset the timer if no arrow key is pressed
@@ -190,7 +191,7 @@ class drive_controller(Supervisor):
             # Detect crash
             self.detect_crash(keys)
             
-            print("Is on road: " + str(self.is_on_road()))
+            #print("Is on road: " + str(self.is_on_road()))
             # Print crash status
             if self.if_crashed:
                 print("if_crashed is True")

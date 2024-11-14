@@ -113,7 +113,9 @@ class RoadRandomizer(Supervisor):
                     self.rotation_readjustment()
                     rotation_cooldown = time.time()
                 if in_proximity:
-                    elapsed_time = round((time.time() - time_initial), 2)  # Calculate time it took to reach destination
+                    elapsed_time = round((time.time() - time_initial), 2) 
+                    self.setCustomData(str(elapsed_time))
+                     # Calculate time it took to reach destination
                     print(f"It took {elapsed_time}s to reach destination.")
                     time_initial = time.time()
 

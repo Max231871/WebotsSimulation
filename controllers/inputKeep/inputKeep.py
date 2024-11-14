@@ -1,41 +1,58 @@
-"""inputKeep controller."""
+from controller import Supervisor
+import random
+import time
+import math
+import sys
+import os
 
-# You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
-from controller import Robot
+class inputKeep(Supervisor):
+    def __init__(self):
+        super(inputKeep, self).__init__()
+        self.time_step = int(self.getBasicTimeStep())
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        self.cars = []
+        self.initialize_car()
+    def import_variables(self):
+        data = []
 
-# create the Robot instance.
-robot = Robot()
+#        else:
+#            data.append("False")
+        robot_def_name = "redEnd"
+        robot_node = self.getFromDef(robot_def_name)
+        custom_data_field = robot_node.getField('customData')
+        
+        if custom_data_field is not None:
+            data.append(custom_data_field.getSFString())
+        else:
+            data.append("-1")
+        return data
+    def initialize_cars(self):
+        """
+        Dynamically collects all road segments with DEF names like Road_0, Road_1, etc.
+        """
+        car_type = "car"
+        index = 0
+        while True:
+            car_def = f"{car_type}_{index}"
+            car = self.getFromDef(car_def)
+            if car:
+                print(car_def)
+                self.cars.append(car)
+                index += 1
+            else:
+                break      
+    def initialize_car(self):
+        car_def = "car"
+        car = self.getFromDef(car_def)
+        self.cars.append(car)
+        
 
-# get the time step of the current world.
-timestep = int(robot.getBasicTimeStep())
+    def run(self):
+        while self.step(self.time_step) != -1:
+            self.import_variables()
 
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
-car_type = "car"
-index = 0
-while True:
-    car_def = f"{car_type}_{index}"
-    car = self.getFromDef(car_def)
-    if road:
-        self.roads.append(car)
-        index += 1
-    else:
-        break
-# Main loop:
-# - perform simulation steps until Webots is stopping the controller
-while robot.step(timestep) != -1:
-    # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
+            
 
-    # Process sensor data here.
-
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
-    pass
-
-# Enter here exit cleanup code.
+# Create and run the controller
+controller = inputKeep()
+controller.run()
