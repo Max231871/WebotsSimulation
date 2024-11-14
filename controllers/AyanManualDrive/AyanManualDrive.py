@@ -105,11 +105,15 @@ class drive_controller(Supervisor):
                  
         for road in self.road_intersections:
             center = road.getPosition()
-            length = 19
-            width = 19
+            bigLength = 19
+            bigWidth = 19
+            length = 7
+            width = 7
             # Check if car is within the bounding box of the road segment
-            if (center[0] - length / 2 <= car_position[0] <= center[0] + length / 2 and
-                center[1] - width / 2 <= car_position[1] <= center[1] + width / 2):
+            if ((center[0] - length / 2 <= car_position[0] <= center[0] + length / 2 or
+                center[1] - width / 2 <= car_position[1] <= center[1] + width / 2) and 
+                (center[0] - bigLength / 2 <= car_position[0] <= center[0] + bigLength / 2 and
+                center[1] - bigWidth / 2 <= car_position[1] <= center[1] + bigWidth / 2)):
                 return True
         return False
 
