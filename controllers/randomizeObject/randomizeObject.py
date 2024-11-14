@@ -2,13 +2,15 @@ from controller import Supervisor
 import random
 import time
 import math
+import os
+import sys
 
 class RoadRandomizer(Supervisor):
     def __init__(self):
         super(RoadRandomizer, self).__init__()
         self.time_step = int(self.getBasicTimeStep())
         self.roads = []
-        
+        self.elapsed_time = -1
         # DEF names for trigger objects
         self.teleportation_trigger_def_1 = "redEnd"  # Object that triggers teleportation
         self.teleportation_trigger_def_2 = "car"     # Object that must contact TriggerObject1
@@ -91,6 +93,26 @@ class RoadRandomizer(Supervisor):
         # Set the car's rotation to face redEnd
         # Rotate only around the y-axis by changing only the angle (4th parameter)
         car.getField("rotation").setSFRotation([0, 0, 1, yaw_angle])
+        
+    def submitInputData(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
+        sys.path.append(main_project_dir)
+        os.chdir(main_project_dir)
+        import inputKeep
+        inputKeep.inputKeep("elapsed_time", self.elapsed_time)
+        end = self.getFromDef("redEnd")
+        endPosition = end.getField("translation").getSFVec3f()
+        endPosition[0] = round(endPosition[0], 2) 
+        endPosition[1] = round(endPosition[1], 2) 
+        endPosition[2] = round(endPosition[2], 2) 
+        inputKeep.inputKeep("endPosition", endPosition)
+        car = self.getFromDef("car")
+        carPosition = car.getField("translation").getSFVec3f()
+        carPosition[0] = round(carPosition[0], 2) 
+        carPosition[1] = round(carPosition[1], 2) 
+        carPosition[2] = round(carPosition[2], 2) 
+        inputKeep.inputKeep("carPosition", carPosition)
 
     def run(self):
         """
@@ -99,6 +121,7 @@ class RoadRandomizer(Supervisor):
         time_initial = time.time()   # Collect initial time to be used as t=0
         rotation_cooldown = time.time()
         while self.step(self.time_step) != -1:
+            self.submitInputData()
             if self.object1 and self.object2:
                 pos1 = self.get_position(self.object1)
                 pos2 = self.get_position(self.object2)
@@ -113,8 +136,10 @@ class RoadRandomizer(Supervisor):
                     # self.rotation_readjustment()
                     rotation_cooldown = time.time()
                 if in_proximity:
-                    elapsed_time = round((time.time() - time_initial), 2)  # Calculate time it took to reach destination
-                    print(f"It took {elapsed_time}s to reach destination.")
+                    self.elapsed_time = round((time.time() - time_initial), 2) 
+                    self.setCustomData(str(self.elapsed_time))
+                     # Calculate time it took to reach destination
+                    print(f"It took {self.elapsed_time}s to reach destination.")
                     time_initial = time.time()
 
                     # Reset the car's velocities to stop it
