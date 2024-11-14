@@ -1,4 +1,6 @@
 from controller import Supervisor, Keyboard
+import os
+import sys
 
 class drive_controller(Supervisor):
     def __init__(self):
@@ -165,9 +167,24 @@ class drive_controller(Supervisor):
             # Reset the timer if no arrow key is pressed
             self.time_stuck = 0.0
             self.if_crashed = False
+    def submitInputData(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
+        sys.path.append(main_project_dir)
+        os.chdir(main_project_dir)
+        import inputKeep
+        #from inputKeep import applyChange
+        inputKeep.inputKeep("if_crashed", self.if_crashed)
+        inputKeep.inputKeep("is_on_road",self.is_on_road())
     
     def run(self):
         while self.step(self.timestep) != -1:
+            self.submitInputData()
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
+            sys.path.append(main_project_dir)
+            #print(f"Imported inputKeep from: {inputKeep.__file__}")
+            #print(f"Attributes in inputKeep: {dir(inputKeep)}")
             # Get keyboard input
             keys = []
             key = self.keyboard.getKey()
