@@ -1,4 +1,5 @@
 from controller import Supervisor, Keyboard
+from model import getInstructions
 
 class drive_controller(Supervisor):
     def __init__(self):
@@ -38,12 +39,15 @@ class drive_controller(Supervisor):
         self.right_rear_brake.setDampingConstant(0)
         
         # Constants
+        self.speed = 0.0
+        self.steering_angle = 0.0
         self.max_speed = 30.0  # Maximum wheel speed
         self.max_steering_angle = 0.5  # Maximum steering angle in radians
         self.movement_threshold = 0.01  # Threshold to consider the car as "stuck"
         self.if_crashed = False  # Initialize if_crashed to False
         self.crash_delay = 1.0  # Time (in seconds) required to trigger crash detection
         self.time_stuck = 0.0  # Counter for time spent stuck
+        self.manual_drive = False
         
         # Reference to the robot node for position
         self.robot_node = self.getFromDef("car")
@@ -82,6 +86,7 @@ class drive_controller(Supervisor):
         # Camera
         self.camera = self.getDevice("camera")
         self.camera.enable(self.timestep)
+        
 
 
     def is_on_road(self):
@@ -172,25 +177,30 @@ class drive_controller(Supervisor):
             key = self.keyboard.getKey()
             while key != -1:
                 keys.append(key)
+                self.manual_drive = True
                 key = self.keyboard.getKey()
             
-            # Initialize speed and steering
-            speed = 0.0
-            steering = 0.0
+
             
-            # Handle keyboard input
-            if Keyboard.UP in keys:
-                speed = self.max_speed
-            elif Keyboard.DOWN in keys:
-                speed = -self.max_speed
             
-            if Keyboard.LEFT in keys:
-                steering = -self.max_steering_angle
-            elif Keyboard.RIGHT in keys:
-                steering = self.max_steering_angle
-            
-            # Drive the car
-            self.drive(speed, steering)
+            if (self.manual_drive):
+                self.speed = 0;
+                self.steering_angle = 0;
+                if Keyboard.UP in keys:
+                    self.speed = self.max_speed
+                elif Keyboard.DOWN in keys:
+                    self.speed = -self.max_speed
+                
+                if Keyboard.LEFT in keys:
+                    self.steering_angle = -self.max_steering_angle
+                elif Keyboard.RIGHT in keys:
+                    self.steering_angle = self.max_steering_angle
+            else:
+                self.speed, self.steering_angle = getInstructions(self.speed, self.steering_angle,
+                    self.getPos(), self.camera.getImage())
+
+
+            self.drive(self.speed, self.steering_angle)
             # Detect crash
             self.detect_crash(keys)
             
