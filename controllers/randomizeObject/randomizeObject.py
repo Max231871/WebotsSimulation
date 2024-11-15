@@ -93,26 +93,6 @@ class RoadRandomizer(Supervisor):
         # Set the car's rotation to face redEnd
         # Rotate only around the y-axis by changing only the angle (4th parameter)
         car.getField("rotation").setSFRotation([0, 0, 1, yaw_angle])
-        
-    def submitInputData(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
-        sys.path.append(main_project_dir)
-        os.chdir(main_project_dir)
-        import inputKeep
-        inputKeep.inputKeep("elapsed_time", self.elapsed_time)
-        end = self.getFromDef("redEnd")
-        endPosition = end.getField("translation").getSFVec3f()
-        endPosition[0] = round(endPosition[0], 2) 
-        endPosition[1] = round(endPosition[1], 2) 
-        endPosition[2] = round(endPosition[2], 2) 
-        inputKeep.inputKeep("endPosition", endPosition)
-        car = self.getFromDef("car")
-        carPosition = car.getField("translation").getSFVec3f()
-        carPosition[0] = round(carPosition[0], 2) 
-        carPosition[1] = round(carPosition[1], 2) 
-        carPosition[2] = round(carPosition[2], 2) 
-        inputKeep.inputKeep("carPosition", carPosition)
 
     def run(self):
         """
@@ -121,7 +101,6 @@ class RoadRandomizer(Supervisor):
         time_initial = time.time()   # Collect initial time to be used as t=0
         rotation_cooldown = time.time()
         while self.step(self.time_step) != -1:
-            self.submitInputData()
             if self.object1 and self.object2:
                 pos1 = self.get_position(self.object1)
                 pos2 = self.get_position(self.object2)

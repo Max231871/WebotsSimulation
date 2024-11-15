@@ -1,10 +1,5 @@
 from controller import Supervisor, Keyboard
-<<<<<<< HEAD
 from model import getInstructions
-=======
-import os
-import sys
->>>>>>> refs/remotes/origin/main
 
 class drive_controller(Supervisor):
     def __init__(self):
@@ -160,7 +155,7 @@ class drive_controller(Supervisor):
             # Check if movement is below threshold
             if all(m < self.movement_threshold for m in movement):
                 self.time_stuck += self.timestep / 1000.0  # Increase the stuck timer
-                if self.time_stuck >= self.crash_delay and self.if_crashed_previous == False:
+                if self.time_stuck >= self.crash_delay:
                     self.if_crashed = True
                     print("Crash detected: The car is stuck or minimally moving.")
             else:
@@ -169,30 +164,14 @@ class drive_controller(Supervisor):
                 self.if_crashed = False
             
             # Update the previous position
-            self.if_crashed_previous = self.if_crashed #checked if crashed previously
             self.previous_position = current_position
         else:
             # Reset the timer if no arrow key is pressed
             self.time_stuck = 0.0
             self.if_crashed = False
-    def submitInputData(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
-        sys.path.append(main_project_dir)
-        os.chdir(main_project_dir)
-        import inputKeep
-        #from inputKeep import applyChange
-        inputKeep.inputKeep("if_crashed", self.if_crashed)
-        inputKeep.inputKeep("is_on_road",self.is_on_road())
     
     def run(self):
         while self.step(self.timestep) != -1:
-            self.submitInputData()
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            main_project_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
-            sys.path.append(main_project_dir)
-            #print(f"Imported inputKeep from: {inputKeep.__file__}")
-            #print(f"Attributes in inputKeep: {dir(inputKeep)}")
             # Get keyboard input
             keys = []
             key = self.keyboard.getKey()
@@ -218,14 +197,14 @@ class drive_controller(Supervisor):
                     self.steering_angle = self.max_steering_angle
             else:
                 self.speed, self.steering_angle = getInstructions(self.speed, self.steering_angle,
-                    self.getPos(), self.camera.getImage())
+                    self.getPos(), self.camera.getImage(), self.getFromDef("redEnd").getField("translation").getSFVec3f())
 
 
             self.drive(self.speed, self.steering_angle)
             # Detect crash
             self.detect_crash(keys)
             
-            #print("Is on road: " + str(self.is_on_road()))
+            print("Is on road: " + str(self.is_on_road()))
             # Print crash status
             if self.if_crashed:
                 print("if_crashed is True")
