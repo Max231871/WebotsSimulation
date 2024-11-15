@@ -1,5 +1,6 @@
 from controller import Supervisor, Keyboard
 from model import getInstructions
+import time
 
 class drive_controller(Supervisor):
     def __init__(self):
@@ -48,6 +49,7 @@ class drive_controller(Supervisor):
         self.crash_delay = 1.0  # Time (in seconds) required to trigger crash detection
         self.time_stuck = 0.0  # Counter for time spent stuck
         self.manual_drive = False
+        self.time_start = 0.0
         
         # Reference to the robot node for position
         self.robot_node = self.getFromDef("car")
@@ -171,6 +173,7 @@ class drive_controller(Supervisor):
             self.if_crashed = False
     
     def run(self):
+        self.start_time = time.time()
         while self.step(self.timestep) != -1:
             # Get keyboard input
             keys = []
@@ -197,7 +200,8 @@ class drive_controller(Supervisor):
                     self.steering_angle = self.max_steering_angle
             else:
                 self.speed, self.steering_angle = getInstructions(self.speed, self.steering_angle,
-                    self.getPos(), self.camera.getImage(), self.getFromDef("redEnd").getField("translation").getSFVec3f())
+                    self.getPos(), self.camera.getImage(), self.getFromDef("redEnd").getField("translation").getSFVec3f(), 
+                    time.time() - self.start_time)
 
 
             self.drive(self.speed, self.steering_angle)
