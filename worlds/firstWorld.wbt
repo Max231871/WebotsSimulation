@@ -7,7 +7,6 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/StraightRoadSegment.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Pavement.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/bmw/BmwX5.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficCone.proto"
 
 WorldInfo {
   window "<generic>"
@@ -15,8 +14,8 @@ WorldInfo {
   basicTimeStep 10
 }
 Viewpoint {
-  orientation 0.32403589092276824 -0.5834151082534405 -0.7447332091799816 5.001578103756429
-  position -8.706613609727626 -73.41162878354535 96.02660791988187
+  orientation 0.17449816611232274 0.006317484732455632 -0.9846372323907375 3.07031154178226
+  position 189.70515246853793 17.970875144942404 51.59616231399343
 }
 TexturedBackground {
 }
@@ -25,14 +24,6 @@ TexturedBackgroundLight {
 RectangleArena {
   translation 4.74 0 -0.01
   floorSize 1000 1000
-}
-Robot {
-  controller "inputKeep"
-  supervisor TRUE
-}
-TrafficCone {
-  translation 79.5 21.57 0
-  scale 42
 }
 DEF Road_0 StraightRoadSegment {
   numberOfLanes 1
@@ -693,21 +684,21 @@ DEF Road_17 Solid {
   ]
   name "CustomRoadIntersection(3)"
 }
-DEF greenStart Solid {
-  translation 55.5 -23.5 0
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.101961 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 1 1 10
-      }
-    }
-  ]
-  name "greenStart"
-}
+# DEF greenStart Solid {
+  # translation 55.5 -23.5 0
+  # children [
+    # Shape {
+      # appearance PBRAppearance {
+        # baseColor 0.101961 1 0
+        # metalness 0
+      # }
+      # geometry Box {
+        # size 1 1 10
+      # }
+    # }
+  # ]
+  # name "greenStart"
+# }
 DEF redEnd Robot {
   translation 55.5 47 0
   children [
@@ -729,28 +720,28 @@ DEF redEnd Robot {
   supervisor TRUE
 }
 DEF car BmwX5 {
-  hidden position_0_0 3.1769202223699044e-12
-  hidden position2_0_0 886.9360139870881
-  hidden position_0_1 -2.4957389255974577e-12
-  hidden position2_0_1 886.9904371334629
-  hidden position_0_2 481.7773077970651
-  hidden position_0_3 516.8164248229238
-  hidden linearVelocity_0 0.0005610700499377457 0.00033740104448216646 -0.00045362339598431105
-  hidden angularVelocity_0 -0.0008092381761918175 0.0013456963215228827 -1.501598894725381e-11
-  hidden rotation_1 1.5884601111849522e-12 1 2.884012573073152e-12 5.276299632413148
-  hidden linearVelocity_1 0.0005001843635384782 0.00030078724418592696 -0.0022528330994353763
-  hidden angularVelocity_1 -0.0008081452065396485 0.0013438787794053599 -8.402481747306935e-12
-  hidden rotation_2 1.2478694627987288e-12 -1 -2.1265798883395014e-12 5.221876486038346
-  hidden linearVelocity_2 0.0005001843416156592 0.00030078723614255983 -0.002252832864832344
-  hidden angularVelocity_2 -0.000808145189625105 0.0013438787740571406 -2.0194620029277587e-11
-  hidden rotation_3 0 -1 0 4.255224451416505
-  hidden linearVelocity_3 0.00047747184761823573 0.00028712905049201666 0.0011413718685528498
-  hidden angularVelocity_3 -0.0007690981142641728 0.0012789462823958244 -1.8335929605599826e-11
-  hidden rotation_4 0 1 0 1.595229634197659
-  hidden linearVelocity_4 0.00047747182294746726 0.0002871290517751287 0.0011413721022280896
-  hidden angularVelocity_4 -0.0007690979045296485 0.0012789463468040054 -1.4934213277484993e-11
-  translation 25.214127140472534 28.78751248677723 0.16235263247408865
-  rotation 0.00773134928659932 -0.0278588076061846 0.999581969163595 0.5416289593409445
+  hidden position_0_0 0.02907716046124498
+  hidden position2_0_0 852.0160386415381
+  hidden position_0_1 0.029035812084707076
+  hidden position2_0_1 851.9629783021575
+  hidden position_0_2 515.1759946175408
+  hidden position_0_3 524.409177035599
+  hidden linearVelocity_0 -2.3709645519636307 -4.848491359580807 0.015107010251283675
+  hidden angularVelocity_0 0.011300105681665699 0.023072540391030502 -0.09647279046034854
+  hidden rotation_1 0.014537896834044195 0.9998825398172643 -0.004853465176500546 2.4972336990370003
+  hidden linearVelocity_1 -2.529197027720286 -4.85158064795338 -0.003685147266133404
+  hidden angularVelocity_1 13.185691785152677 -6.851281022529763 1.9356178710797027
+  hidden rotation_2 -0.014517254110616313 -0.9998848402799081 -0.004422161407110527 2.5502876762316284
+  hidden linearVelocity_2 -2.4571172599071045 -4.713663620158808 0.027426183714395914
+  hidden angularVelocity_2 13.180540592219465 -6.851407134697269 1.9377283616269247
+  hidden rotation_3 0 1 0 0.045200571185263924
+  hidden linearVelocity_3 -2.296971433948415 -4.970782662102526 -0.004731821060763064
+  hidden angularVelocity_3 13.287606016556298 -6.14329951468524 -0.19970267062919506
+  hidden rotation_4 0 -1 0 3.3783887674862774
+  hidden linearVelocity_4 -2.230168180485721 -4.827275164113291 0.026231374027199886
+  hidden angularVelocity_4 12.90388743354171 -5.964999277646068 -0.19671688263993445
+  translation 16.104535576662588 17.737679739887877 0.16245816228771487
+  rotation -0.009406820976999386 -0.0009621539417605273 -0.9999552919900464 2.0063623612776853
   controller "AyanManualDrive"
   supervisor TRUE
   sensorsSlotTop [
@@ -778,19 +769,4 @@ DEF car BmwX5 {
       width 128
     }
   ]
-}
-Solid {
-  translation 14.6555 76.1945 0
-  rotation 0 0 1 -2.3561953071795863
-  children [
-    Shape {
-      geometry Box {
-        size 1 10 10
-      }
-    }
-  ]
-  name "solid(24)"
-  boundingObject Box {
-    size 1 10 10
-  }
 }
