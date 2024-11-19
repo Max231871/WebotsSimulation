@@ -766,7 +766,8 @@ DEF car BmwX5 {
         }
       ]
       fieldOfView 1
-      width 128
+      width 64
+      height 36
     }
   ]
 }
