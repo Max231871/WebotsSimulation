@@ -1,7 +1,6 @@
 import random
 
-def getInstructions(speed, steering, position, image, endPos, time):
-    print(time)
+def getInstructions(speed, steering, position, image, endPos):
     return random.randint(1, 30), (random.random() - 0.5);
     
     

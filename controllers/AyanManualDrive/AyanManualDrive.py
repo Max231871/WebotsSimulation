@@ -266,7 +266,7 @@ class drive_controller(Supervisor):
                     self.steering_angle = self.max_steering_angle
             else:
                 self.speed, self.steering_angle = getInstructions(self.speed, self.steering_angle,
-                    self.getPos(), self.camera.getImage(), self.end_pos, currTime)
+                    self.getPos(), self.camera.getImage(), self.end_pos)
 
 
             self.drive(self.speed, self.steering_angle)

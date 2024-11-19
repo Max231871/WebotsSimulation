@@ -716,7 +716,7 @@ DEF redEnd Robot {
   boundingObject Box {
     size 1 1 10
   }
-  controller "randomizeObject"
+
   supervisor TRUE
 }
 DEF car BmwX5 {
