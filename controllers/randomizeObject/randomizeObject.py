@@ -110,7 +110,7 @@ class RoadRandomizer(Supervisor):
                 # Check proximity and get distance
                 in_proximity, distance = self.check_proximity(pos1, pos2, threshold=5)
                 if time.time()-rotation_cooldown > 2:
-                    self.rotation_readjustment()
+                   # self.rotation_readjustment()
                     rotation_cooldown = time.time()
                 if in_proximity:
                     elapsed_time = round((time.time() - time_initial), 2)  # Calculate time it took to reach destination
@@ -127,9 +127,15 @@ class RoadRandomizer(Supervisor):
                             new_position = self.get_random_road_position()
                             self.teleport_object(obj_def, new_position)
                         green_start = self.getFromDef("greenStart")
+
+                        
                         car_position = green_start.getField("translation").getSFVec3f()
                         car.getField("translation").setSFVec3f(car_position)
-                        self.rotation_readjustment()
+                       # self.rotation_readjustment()
+                        while get_position(green_start) == get_position(self.getFromDef('redEnd')):
+                            new_position = self.get_random_road_position()
+                            self.teleport_object('greenStart', new_position)
+                            self.teleport_object('car', new_position)
                         self.teleport_cooldown = self.cooldown_steps  # Start cooldown
 
                 else:

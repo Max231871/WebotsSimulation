@@ -174,16 +174,38 @@ class drive_controller(Supervisor):
             speed = 0.0
             steering = 0.0
             
+            
+            file = open("humanControls.txt", "a")
+            keys_pressed = set()
             # Handle keyboard input
             if Keyboard.UP in keys:
                 speed = self.max_speed
+                # Key is pressed
+               
+
+                if Keyboard.UP not in keys_pressed:
+                    print(f"Key pressed: {Keyboard.UP}")
+                    keys_pressed.add(Keyboard.UP)
+          
+                # Key is released
+                for pressed_key in list(keys_pressed):
+                        # print(f"Key released: {pressed_key}")
+                        file.write("UP " + str(speed))
+                        keys_pressed.remove(pressed_key)       
+                    
             elif Keyboard.DOWN in keys:
                 speed = -self.max_speed
-            
+                file.write("DOWN " + str(speed))
+               
             if Keyboard.LEFT in keys:
                 steering = -self.max_steering_angle
+                file.write("LEFT " + str(steering))
+               
             elif Keyboard.RIGHT in keys:
                 steering = self.max_steering_angle
+                file.write("RIGHT " + str(steering))
+
+            file.close()
             
             # Drive the car
             self.drive(speed, steering)
