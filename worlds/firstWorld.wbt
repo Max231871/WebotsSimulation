@@ -15,8 +15,8 @@ WorldInfo {
   basicTimeStep 10
 }
 Viewpoint {
-  orientation 0.32403589092276824 -0.5834151082534405 -0.7447332091799816 5.001578103756429
-  position -8.706613609727626 -73.41162878354535 96.02660791988187
+  orientation 0.18096050942608105 -0.5610855041183916 -0.8077353224271324 5.523385722051044
+  position -50.36795153913075 -46.48382053117258 40.6661639606391
 }
 TexturedBackground {
 }
@@ -41,6 +41,7 @@ DEF Road_0 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_1 StraightRoadSegment {
   translation 23.5 -23.5 0
@@ -52,6 +53,7 @@ DEF Road_1 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_2 StraightRoadSegment {
   translation 23.5 55.5 0
@@ -63,6 +65,7 @@ DEF Road_2 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_3 StraightRoadSegment {
   translation 55.5 55.5 0
@@ -74,6 +77,7 @@ DEF Road_3 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_4 StraightRoadSegment {
   translation 55.5 -23.5 0
@@ -85,6 +89,7 @@ DEF Road_4 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_5 StraightRoadSegment {
   translation 23.5 8.5 0
@@ -96,6 +101,7 @@ DEF Road_5 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_6 StraightRoadSegment {
   translation 55.5 8.5 0
@@ -107,6 +113,7 @@ DEF Road_6 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_7 StraightRoadSegment {
   translation 55.5 23.5 0
@@ -118,6 +125,7 @@ DEF Road_7 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_8 StraightRoadSegment {
   translation 23.5 23.5 0
@@ -129,6 +137,7 @@ DEF Road_8 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_9 StraightRoadSegment {
   translation 32 0 0
@@ -139,6 +148,7 @@ DEF Road_9 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_10 StraightRoadSegment {
   translation 32 47 0
@@ -149,6 +159,7 @@ DEF Road_10 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_11 StraightRoadSegment {
   translation 64 0 0
@@ -159,6 +170,7 @@ DEF Road_11 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_12 StraightRoadSegment {
   translation 64 47 0
@@ -169,6 +181,7 @@ DEF Road_12 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_13 StraightRoadSegment {
   translation 0 47 0
@@ -694,7 +707,6 @@ DEF Road_17 Solid {
   name "CustomRoadIntersection(3)"
 }
 DEF greenStart Solid {
-  translation 55.5 -23.5 0
   children [
     Shape {
       appearance PBRAppearance {
@@ -709,7 +721,7 @@ DEF greenStart Solid {
   name "greenStart"
 }
 DEF redEnd Robot {
-  translation 55.5 47 0
+  translation 23.5 55.5 0
   children [
     Shape {
       appearance PBRAppearance {
@@ -726,32 +738,34 @@ DEF redEnd Robot {
     size 1 1 10
   }
   controller "randomizeObject"
+  customData "18.32"
   supervisor TRUE
 }
 DEF car BmwX5 {
-  hidden position_0_0 3.1769202223699044e-12
-  hidden position2_0_0 886.9360139870881
-  hidden position_0_1 -2.4957389255974577e-12
-  hidden position2_0_1 886.9904371334629
-  hidden position_0_2 481.7773077970651
-  hidden position_0_3 516.8164248229238
-  hidden linearVelocity_0 0.0005610700499377457 0.00033740104448216646 -0.00045362339598431105
-  hidden angularVelocity_0 -0.0008092381761918175 0.0013456963215228827 -1.501598894725381e-11
-  hidden rotation_1 1.5884601111849522e-12 1 2.884012573073152e-12 5.276299632413148
-  hidden linearVelocity_1 0.0005001843635384782 0.00030078724418592696 -0.0022528330994353763
-  hidden angularVelocity_1 -0.0008081452065396485 0.0013438787794053599 -8.402481747306935e-12
-  hidden rotation_2 1.2478694627987288e-12 -1 -2.1265798883395014e-12 5.221876486038346
-  hidden linearVelocity_2 0.0005001843416156592 0.00030078723614255983 -0.002252832864832344
-  hidden angularVelocity_2 -0.000808145189625105 0.0013438787740571406 -2.0194620029277587e-11
-  hidden rotation_3 0 -1 0 4.255224451416505
-  hidden linearVelocity_3 0.00047747184761823573 0.00028712905049201666 0.0011413718685528498
-  hidden angularVelocity_3 -0.0007690981142641728 0.0012789462823958244 -1.8335929605599826e-11
-  hidden rotation_4 0 1 0 1.595229634197659
-  hidden linearVelocity_4 0.00047747182294746726 0.0002871290517751287 0.0011413721022280896
-  hidden angularVelocity_4 -0.0007690979045296485 0.0012789463468040054 -1.4934213277484993e-11
-  translation 25.214127140472534 28.78751248677723 0.16235263247408865
-  rotation 0.00773134928659932 -0.0278588076061846 0.999581969163595 0.5416289593409445
-  controller "AyanManualDrive"
+  hidden position_0_0 -6.834206819672669e-05
+  hidden position2_0_0 0.0024374292975434604
+  hidden position_0_1 -9.990301255085312e-05
+  hidden position2_0_1 0.0010265654868039091
+  hidden position_0_2 1.057652442923089
+  hidden position_0_3 0.9039672987103589
+  hidden linearVelocity_0 0.015238085708322833 0.018669503811169674 0.0373596192352568
+  hidden angularVelocity_0 -0.04470599716360145 0.03997849544888526 -0.00022403576456599095
+  hidden rotation_1 0.24093546269818356 -0.9405635679020729 -0.2393538751508624 4.649648185073067
+  hidden linearVelocity_1 0.01369123185455606 0.017412567200459122 0.05052353717247139
+  hidden angularVelocity_1 -0.044615154329506315 0.040094707216012264 -0.00022218993016382454
+  hidden rotation_2 -0.24099276186639867 0.9429721422612795 -0.22962148777320093 4.607384542004411
+  hidden linearVelocity_2 0.01451226228807741 0.017299215960560742 -0.019060801773937857
+  hidden angularVelocity_2 -0.044633721783174665 0.04007590674458046 -0.0002232243543697444
+  hidden rotation_3 0 -1 0 4.695738216228227
+  hidden linearVelocity_3 0.012051353387923977 0.015790457003875647 0.07066338080506401
+  hidden angularVelocity_3 -0.04700303292168192 0.03809297361586791 -0.00026494004965356573
+  hidden rotation_4 0 -1 0 3.596030430446357
+  hidden linearVelocity_4 0.01275411261016699 0.015532296355725797 0.001729528799343741
+  hidden angularVelocity_4 -0.04823978050076744 0.03724979366192156 -0.0003968764233627133
+  translation -0.8693219723052621 1.114282855866144 0.167607757894443
+  rotation 0.004018531911064968 -0.009967892751891262 0.9999422445898395 2.2559058943423946
+  name "car"
+  controller "NEATSupervisor"
   supervisor TRUE
   sensorsSlotTop [
     Camera {

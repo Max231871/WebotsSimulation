@@ -74,6 +74,7 @@ class RoadRandomizer(Supervisor):
                     (pos1[1] - pos2[1]) ** 2 + 
                     (pos1[2] - pos2[2]) ** 2) ** 0.5
         return distance < threshold, distance
+    
     def rotation_readjustment(self):
         car = self.getFromDef("car")
 
@@ -92,7 +93,7 @@ class RoadRandomizer(Supervisor):
 
         # Set the car's rotation to face redEnd
         # Rotate only around the y-axis by changing only the angle (4th parameter)
-        car.getField("rotation").setSFRotation([0, 0, 1, yaw_angle])
+        #car.getField("rotation").setSFRotation([0, 0, 1, yaw_angle])
 
     def run(self):
         """
@@ -109,31 +110,27 @@ class RoadRandomizer(Supervisor):
                 distanceAway[1] = pos2[1]-pos1[1]
                 #print(f"Distance from goal: [{distanceAway[0]:.2f}, {distanceAway[1]:.2f}] meters")
 
-                # Check proximity and get distance
                 in_proximity, distance = self.check_proximity(pos1, pos2, threshold=5)
                 if time.time()-rotation_cooldown > 2:
-                    # self.rotation_readjustment()
+                    self.rotation_readjustment()
                     rotation_cooldown = time.time()
                 if in_proximity:
                     self.elapsed_time = round((time.time() - time_initial), 2) 
                     self.setCustomData(str(self.elapsed_time))
-                     # Calculate time it took to reach destination
                     print(f"It took {self.elapsed_time}s to reach destination.")
                     time_initial = time.time()
 
-                    # Reset the car's velocities to stop it
                     car = self.getFromDef("car")
                     car.resetPhysics()
                     
                     if self.teleport_cooldown == 0:
-                        # Teleport objects
                         for obj_def in self.teleport_objects:
                             new_position = self.get_random_road_position()
                             self.teleport_object(obj_def, new_position)
                         green_start = self.getFromDef("greenStart")
                         car_position = green_start.getField("translation").getSFVec3f()
                         car.getField("translation").setSFVec3f(car_position)
-                        # self.rotation_readjustment()
+                        self.rotation_readjustment()
                         self.teleport_cooldown = self.cooldown_steps  # Start cooldown
 
                 else:
