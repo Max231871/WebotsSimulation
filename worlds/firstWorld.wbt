@@ -14,8 +14,13 @@ WorldInfo {
   basicTimeStep 10
 }
 Viewpoint {
+<<<<<<< HEAD
   orientation 0.17449816611232274 0.006317484732455632 -0.9846372323907375 3.07031154178226
   position 189.70515246853793 17.970875144942404 51.59616231399343
+=======
+  orientation 0.18096050942608105 -0.5610855041183916 -0.8077353224271324 5.523385722051044
+  position -50.36795153913075 -46.48382053117258 40.6661639606391
+>>>>>>> eab5459ba35f583bbbd595edba3a5b0d4fb997b1
 }
 TexturedBackground {
 }
@@ -32,6 +37,7 @@ DEF Road_0 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_1 StraightRoadSegment {
   translation 23.5 -23.5 0
@@ -43,6 +49,7 @@ DEF Road_1 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_2 StraightRoadSegment {
   translation 23.5 55.5 0
@@ -54,6 +61,7 @@ DEF Road_2 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_3 StraightRoadSegment {
   translation 55.5 55.5 0
@@ -65,6 +73,7 @@ DEF Road_3 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_4 StraightRoadSegment {
   translation 55.5 -23.5 0
@@ -76,6 +85,7 @@ DEF Road_4 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_5 StraightRoadSegment {
   translation 23.5 8.5 0
@@ -87,6 +97,7 @@ DEF Road_5 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_6 StraightRoadSegment {
   translation 55.5 8.5 0
@@ -98,6 +109,7 @@ DEF Road_6 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_7 StraightRoadSegment {
   translation 55.5 23.5 0
@@ -109,6 +121,7 @@ DEF Road_7 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_8 StraightRoadSegment {
   translation 23.5 23.5 0
@@ -120,6 +133,7 @@ DEF Road_8 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_9 StraightRoadSegment {
   translation 32 0 0
@@ -130,6 +144,7 @@ DEF Road_9 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_10 StraightRoadSegment {
   translation 32 47 0
@@ -140,6 +155,7 @@ DEF Road_10 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_11 StraightRoadSegment {
   translation 64 0 0
@@ -150,6 +166,7 @@ DEF Road_11 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_12 StraightRoadSegment {
   translation 64 47 0
@@ -160,6 +177,7 @@ DEF Road_12 StraightRoadSegment {
     colorOverride 0.666667 0 0.498039
   }
   locked FALSE
+  roadBoundingObject TRUE
 }
 DEF Road_13 StraightRoadSegment {
   translation 0 47 0
@@ -686,7 +704,10 @@ DEF Road_17 Solid {
 }
 <<<<<<< HEAD
 DEF greenStart Solid {
+<<<<<<< HEAD
   translation 0 47 0
+=======
+>>>>>>> eab5459ba35f583bbbd595edba3a5b0d4fb997b1
   children [
     Shape {
       appearance PBRAppearance {
@@ -718,7 +739,7 @@ DEF greenStart Solid {
 # }
 >>>>>>> 89e5f798357f826104c4787bb3b0a954975142d7
 DEF redEnd Robot {
-  translation 55.5 47 0
+  translation 23.5 55.5 0
   children [
     Shape {
       appearance PBRAppearance {
@@ -734,6 +755,7 @@ DEF redEnd Robot {
   boundingObject Box {
     size 1 1 10
   }
+<<<<<<< HEAD
 
   supervisor TRUE
 }
@@ -786,6 +808,37 @@ DEF car BmwX5 {
   rotation -0.009406820976999386 -0.0009621539417605273 -0.9999552919900464 2.0063623612776853
 >>>>>>> 89e5f798357f826104c4787bb3b0a954975142d7
   controller "AyanManualDrive"
+=======
+  controller "randomizeObject"
+  customData "18.32"
+  supervisor TRUE
+}
+DEF car BmwX5 {
+  hidden position_0_0 -6.834206819672669e-05
+  hidden position2_0_0 0.0024374292975434604
+  hidden position_0_1 -9.990301255085312e-05
+  hidden position2_0_1 0.0010265654868039091
+  hidden position_0_2 1.057652442923089
+  hidden position_0_3 0.9039672987103589
+  hidden linearVelocity_0 0.015238085708322833 0.018669503811169674 0.0373596192352568
+  hidden angularVelocity_0 -0.04470599716360145 0.03997849544888526 -0.00022403576456599095
+  hidden rotation_1 0.24093546269818356 -0.9405635679020729 -0.2393538751508624 4.649648185073067
+  hidden linearVelocity_1 0.01369123185455606 0.017412567200459122 0.05052353717247139
+  hidden angularVelocity_1 -0.044615154329506315 0.040094707216012264 -0.00022218993016382454
+  hidden rotation_2 -0.24099276186639867 0.9429721422612795 -0.22962148777320093 4.607384542004411
+  hidden linearVelocity_2 0.01451226228807741 0.017299215960560742 -0.019060801773937857
+  hidden angularVelocity_2 -0.044633721783174665 0.04007590674458046 -0.0002232243543697444
+  hidden rotation_3 0 -1 0 4.695738216228227
+  hidden linearVelocity_3 0.012051353387923977 0.015790457003875647 0.07066338080506401
+  hidden angularVelocity_3 -0.04700303292168192 0.03809297361586791 -0.00026494004965356573
+  hidden rotation_4 0 -1 0 3.596030430446357
+  hidden linearVelocity_4 0.01275411261016699 0.015532296355725797 0.001729528799343741
+  hidden angularVelocity_4 -0.04823978050076744 0.03724979366192156 -0.0003968764233627133
+  translation -0.8693219723052621 1.114282855866144 0.167607757894443
+  rotation 0.004018531911064968 -0.009967892751891262 0.9999422445898395 2.2559058943423946
+  name "car"
+  controller "NEATSupervisor"
+>>>>>>> eab5459ba35f583bbbd595edba3a5b0d4fb997b1
   supervisor TRUE
   sensorsSlotTop [
     Camera {
