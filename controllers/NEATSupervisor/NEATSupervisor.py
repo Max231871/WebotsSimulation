@@ -5,7 +5,6 @@ from controller import Supervisor
 import numpy as np
 import cv2
 import random
-import multiprocessing
 
 
 class NEATSupervisor(Supervisor):
@@ -212,52 +211,110 @@ class NEATSupervisor(Supervisor):
             timeCounter += 1
             if current_time - self.start_time > self.max_simulation_time:
                 break
-            if self.detect_crash() or self.reached_end():
+            if self.reached_end():
                 reached = True
                 break
-
-            # Get preprocessed inputs
             inputs = self.preprocess_inputs()
-            # Feed inputs through the neural network to get outputs
             outputs = self.net.activate(inputs)
-            # Update the robot's controls
             self.set_controls(outputs)
-        
+
+            # Update fitness continuously
         if reached:
-            self.fitness = self.calculate_distance()
+            self.fitness = 50 + 40 * ((self.getTime() - self.start_time) / (self.shortest_path / 30.0)) - 20 * ((timeCounter - onRoadCounter) / timeCounter)
+        else:
+            self.fitness = -3 * ((timeCounter - onRoadCounter) / timeCounter) + 30 * self.calculate_distance()
+        print(f"Fitness: {self.fitness}")
+        return self.fitness
         
-        genome.fitness = self.fitness
+    def shortestPath(self, carPos, endPos):
+        if carPos[0] == endPos[0]:
+            for road in self.road_intersections:
+                if carPos[0] == road.getField("translation").getSFVec3f()[0]:
+                    return abs(carPos[0] - endPos[0]) + abs(carPos[1] - endPos[1])
+            return abs(carPos[0] - endPos[0]) + abs(carPos[1] - endPos[1]) + 30
+        if carPos[1] == endPos[1]:
+            for road in self.road_intersections:
+                if carPos[1] == road.getField("translation").getSFVec3f()[1]:
+                    return abs(carPos[0] - endPos[0]) + abs(carPos[1] - endPos[1])
+            return abs(carPos[0] - endPos[0]) + abs(carPos[1] - endPos[1]) + 30
+        return abs(carPos[0] - endPos[0]) + abs(carPos[1] - endPos[1])
+        
+    def is_on_road(self):
+        car_position = self.getPos()  # [x, y, z]
+        for road in self.roads:
+            center = road.getField("translation").getSFVec3f()
+            # Define road boundaries based on your world setup
+            # Example for horizontal roads:
+            if road in self.horizontal_roads:
+                road_length = 15  # Adjust as per your world
+                road_width = 7
+                if (center[0] - road_length / 2 <= car_position[0] <= center[0] + road_length / 2 and
+                    center[1] - road_width / 2 <= car_position[1] <= center[1] + road_width / 2):
+                    return True
+            # Example for vertical roads:
+            elif road in self.vertical_roads:
+                road_length = 15
+                road_width = 7
+                if (center[0] - road_width / 2 <= car_position[0] <= center[0] + road_width / 2 and
+                    center[1] - road_length / 2 <= car_position[1] <= center[1] + road_length / 2):
+                    return True
+            # Example for intersections:
+            elif road in self.road_intersections:
+                road_length = 19
+                road_width = 19
+                if (center[0] - road_length / 2 <= car_position[0] <= center[0] + road_length / 2 and
+                    center[1] - road_width / 2 <= car_position[1] <= center[1] + road_width / 2):
+                    return True
+        return False
+
+def eval_genomes(genomes, config):
+    print("Starting a new generation...")
+    # Teleport redEnd and greenStart at the start of each generation
+    print("Teleporting objects for new generation...")
+    new_red_end_position = supervisor.get_random_road_position()
+    new_green_start_position = supervisor.get_random_road_position()
+    while new_red_end_position == new_green_start_position:
+        new_red_end_position = supervisor.get_random_road_position()
+        new_green_start_position = supervisor.get_random_road_position()
+
+    supervisor.teleport_object(supervisor.end_obj, new_red_end_position)
+    supervisor.teleport_object(supervisor.green_start, new_green_start_position)
+
+    # Evaluate each genome
+    for genome_id, genome in genomes:
+        try:
+            print(f"Evaluating genome {genome_id}...")
+            supervisor.reset_simulation_state()  # Reset simulation for each genome
+            fitness = supervisor.evaluate_genome(genome, config)
+            genome.fitness = fitness
+            print(f"Genome {genome_id} fitness: {fitness}")
+        except Exception as e:
+            print(f"Error evaluating genome {genome_id}: {e}")
+            genome.fitness = float('-inf')
 
 
-def run_neat(config):
-    """
-    Run the NEAT algorithm with multiprocessing for parallel evaluations of genomes.
-    """
-    # Create a pool of workers for parallel evaluations
-    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
-    
-    def evaluate_genome_wrapper(genome):
-        supervisor = NEATSupervisor()
-        supervisor.evaluate_genome(genome, config)
-        return genome
-    
-    # Set up the NEAT algorithm
-    p = neat.Population(config)
-    p.add_reporter(neat.StdOutReporter(True))
-    p.add_reporter(neat.StatisticsReporter())
-
-    # Use multiprocessing to evaluate genomes in parallel
-    winner = p.run(evaluate_genome_wrapper, 10)  # Evaluate 10 generations as an example
-    with open('best_genome.pkl', 'wb') as f:
-        pickle.dump(winner, f)
-
-if __name__ == '__main__':
+def run_neat():
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     if not os.path.exists(config_path):
         print(f"Configuration file not found at {config_path}")
+        return
 
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          config_path)
-    run_neat(config)
+
+    p = neat.Population(config)
+    p.add_reporter(neat.StdOutReporter(True))
+    stats = neat.StatisticsReporter()
+    p.add_reporter(stats)
+
+    winner = p.run(eval_genomes, n=500)
+    with open('best_genome.pkl', 'wb') as f:
+        pickle.dump(winner, f)
+
+
+if __name__ == '__main__':
+    # Create a single global supervisor instance
+    supervisor = NEATSupervisor()
+    run_neat()
